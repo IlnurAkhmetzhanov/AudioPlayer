@@ -1,28 +1,30 @@
+import { Weather } from "./data";
 import { weathers } from "./data";
 import "./index.scss";
 
-const root = document.querySelector("#weathers");
-const range = document.querySelector("#range");
-const audio = new Audio();
+const root: Element = document.querySelector("#weathers");
+const range: Element = document.querySelector("#range");
+const audio: HTMLAudioElement = new Audio();
 audio.volume = 0;
-let currentWeather = "";
-let currentSound = "";
-const weathersRef = [];
+let currentWeather: string = "";
+const weathersRef: HTMLImageElement[] = [];
 
-range.addEventListener("input", function (e) {
-  audio.volume = e.currentTarget.value / 100;
+range.addEventListener("input", function (e: InputEvent) {
+  const element = e.currentTarget as HTMLInputElement;
+  const value: string = element.value;
+  audio.volume = Number(value) / 100;
 });
 
-const resetIcons = (refs) => {
-  refs.forEach((e, index) => {
+const resetIcons = (refs: HTMLImageElement[]) => {
+  refs.forEach((e: HTMLImageElement, index: number) => {
     e.src = weathers[index].icon;
   });
 };
 
-function renderItem(item, index) {
-  const app = document.getElementById("app");
-  const weatherContainer = document.createElement("div");
-  const weatherIcon = document.createElement("img");
+function renderItem(item: Weather, index: number) {
+  const app: HTMLElement = document.getElementById("app");
+  const weatherContainer: HTMLDivElement = document.createElement("div");
+  const weatherIcon: HTMLImageElement = document.createElement("img");
   weatherContainer.className = "weatherContainer";
   weatherIcon.className = "weatherIcon";
   weatherIcon.src = item.icon;

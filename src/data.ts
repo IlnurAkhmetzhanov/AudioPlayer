@@ -1,4 +1,11 @@
-export const weathers = [
+export interface Weather {
+  name: string;
+  bg: string;
+  icon: string;
+  sound: string;
+}
+
+export const weathers: Weather[] = [
   {
     name: "summer",
     bg: "./backgrounds/summer-bg.jpg",
